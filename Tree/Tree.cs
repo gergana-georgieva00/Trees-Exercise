@@ -57,7 +57,25 @@
 
         public IEnumerable<T> GetInternalKeys()
         {
-            throw new NotImplementedException();
+            var result = new List<T>();
+            var queue = new Queue<Tree<T>>();
+
+            queue.Enqueue(this);
+            while (queue.Count > 0)
+            {
+                var currSubtree = queue.Dequeue();
+                if (currSubtree.children.Count > 0 && currSubtree.Parent != null)
+                {
+                    result.Add(currSubtree.Key);
+                }
+
+                foreach (var child in currSubtree.children)
+                {
+                    queue.Enqueue(child);
+                }
+            }
+
+            return result;
         }
 
         public IEnumerable<T> GetLeafKeys()
