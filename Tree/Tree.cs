@@ -62,7 +62,25 @@
 
         public IEnumerable<T> GetLeafKeys()
         {
-            throw new NotImplementedException();
+            var result = new List<T>();
+            var queue = new Queue<Tree<T>>();
+
+            queue.Enqueue(this);
+            while (queue.Count > 0)
+            {
+                var currSubtree = queue.Dequeue();
+                if (currSubtree.children.Count == 0)
+                {
+                    result.Add(currSubtree.Key);
+                }
+
+                foreach (var child in currSubtree.children)
+                {
+                    queue.Enqueue(child);
+                }
+            }
+
+            return result;
         }
 
         public T GetDeepestKey()
