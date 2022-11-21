@@ -25,7 +25,7 @@
 
         public Tree<T> Parent { get; private set; }
 
-        public IReadOnlyCollection<Tree<T>> Children => throw new NotImplementedException();
+        public IReadOnlyCollection<Tree<T>> Children => this.children.AsReadOnly();
 
         public void AddChild(Tree<T> child)
         {
