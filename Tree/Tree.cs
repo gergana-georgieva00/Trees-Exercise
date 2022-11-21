@@ -5,19 +5,16 @@
 
     public class Tree<T> : IAbstractTree<T>
     {
-        private T value;
-        private Tree<T> parent;
         private List<Tree<T>> children;
 
         public Tree(T key, params Tree<T>[] children)
         {
-            this.value = key;
+            this.Key = key;
             this.children = new List<Tree<T>>();
 
             foreach (var child in children)
             {
-                child.parent = this;
-                this.children.Add(child);
+                this.AddChild(child);
             }
         }
 
