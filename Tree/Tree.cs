@@ -5,9 +5,20 @@
 
     public class Tree<T> : IAbstractTree<T>
     {
+        private T value;
+        private Tree<T> parent;
+        private readonly List<Tree<T>> children;
+
         public Tree(T key, params Tree<T>[] children)
         {
-            throw new NotImplementedException();
+            this.value = key;
+            this.children = new List<Tree<T>>();
+
+            foreach (var child in children)
+            {
+                child.parent = this;
+                this.children.Add(child);
+            }
         }
 
         public T Key { get; private set; }
