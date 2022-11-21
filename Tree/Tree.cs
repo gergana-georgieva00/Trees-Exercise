@@ -7,7 +7,7 @@
     {
         private T value;
         private Tree<T> parent;
-        private readonly List<Tree<T>> children;
+        private List<Tree<T>> children;
 
         public Tree(T key, params Tree<T>[] children)
         {
@@ -29,12 +29,12 @@
 
         public void AddChild(Tree<T> child)
         {
-            throw new NotImplementedException();
+            this.children.Add(child);
         }
 
         public void AddParent(Tree<T> parent)
         {
-            throw new NotImplementedException();
+            this.Parent = parent;
         }
 
         public string AsString()
