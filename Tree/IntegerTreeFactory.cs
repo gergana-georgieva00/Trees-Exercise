@@ -24,6 +24,8 @@
 
                 this.AddEdge(parent, child);
             }
+
+            return this.GetRoot();
         }
 
         public IntegerTree CreateNodeByKey(int key)
@@ -42,7 +44,15 @@
 
         public IntegerTree GetRoot()
         {
-            throw new NotImplementedException();
+            foreach (var kvp in this.nodesByKey)
+            {
+                if (kvp.Value.Parent is null)
+                {
+                    return kvp.Value;
+                }
+            }
+
+            return null;
         }
     }
 }
