@@ -30,13 +30,18 @@
 
         public IntegerTree CreateNodeByKey(int key)
         {
-            throw new NotImplementedException();
+            if (!this.nodesByKey.ContainsKey(key))
+            {
+                this.nodesByKey.Add(key, new IntegerTree(key));
+            }
+
+            return nodesByKey[key];
         }
 
         public void AddEdge(int parent, int child)
         {
-            var parentNode = new IntegerTree(parent);
-            var childNode = new IntegerTree(child);
+            var parentNode = CreateNodeByKey(parent);
+            var childNode = CreateNodeByKey(child);
 
             childNode.AddParent(parentNode);
             parentNode.AddChild(childNode);
